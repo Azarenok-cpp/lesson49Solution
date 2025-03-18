@@ -1,5 +1,6 @@
 #include "tests.h"
 #include "logic.h"
+
 void print(bool result, int logic, string name) {
 	cout << name << ": " << (result ? "Success!\n\n\n" : "\033[1;31m Fail! \033[0m Program output: " + to_string(logic) + "\n\n\n");
 }
@@ -105,24 +106,7 @@ void test04() {
 
 	int** matrix;
 
-	matrix = new int* [n];
-
-	for (int i = 0; i < n; i++)
-	{
-		matrix[i] = new int[m];
-	}
-
-	/*int values[n][m]{
-		{1,2},
-		{2,1}
-	};
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			matrix[i][j] = values[i][j];
-		}
-	}*/
+	matrix = nullptr;
 
 	int expected = -1;
 	int actual = find_sum_of_elements_in_columns_with_extremes(matrix, n, m);
@@ -134,9 +118,7 @@ void test05() {
 	const int n = 3;
 	const int m = 3;
 
-	int** matrix;
-
-	matrix = new int* [n];
+	int** matrix = new int* [n];
 
 	for (int i = 0; i < n; i++)
 	{
@@ -167,19 +149,12 @@ void test06() {
 	const int n = 0;
 	const int m = 0;
 
-	int** matrix = new int* [n];
-	for (int i = 0; i < n; i++) {
-		matrix[i] = new int[m];
-	}
+	int** matrix = nullptr;
 
 	int expected = -1;
 	int actual = find_sum_of_elements_in_columns_with_extremes(matrix, n, m);
 	print(expected == actual, actual, "Incorrect size (0x0)");
 
-
-	for (int i = 0; i < n; i++) {
-		delete[] matrix[i];
-	}
 	delete[] matrix;
 }
 
@@ -195,12 +170,9 @@ void test07() {
 
 
 
-	if (matrix) {
-		for (int i = 0; i < n; i++) {
-			delete[] matrix[i];
-		}
-		delete[] matrix;
-	}
+
+	delete[] matrix;
+
 }
 
 void test08() {

@@ -89,8 +89,8 @@ void find_last_local_minimum(int& x, int& y, int** matrix, int n, int m) {
 	x = -1;
 	y = -1;
 
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
 			if (is_local_minimum(matrix, i, j, n, m)) {
 				x = i+1;
 				y = j+1; 
